@@ -33,7 +33,6 @@ namespace DjilbaParser
             {
                 CodeTextBox.Text = File.ReadAllText(dialog.FileName);
                 _currentFilePath = dialog.FileName;
-                FileNameText.Text = dialog.FileName;
                 AnalyzeCurrentCode();
             }
             catch (Exception ex)
@@ -66,8 +65,6 @@ namespace DjilbaParser
                 AnalyzeCurrentCode();
                 return;
             }
-
-            ShowError("Встроенный пример не найден.");
         }
 
         private void AnalyzeCurrentCode()
@@ -83,7 +80,6 @@ namespace DjilbaParser
                     $"{metrics.ConditionalOperators} / {metrics.TotalOperators} = {metrics.RelativeComplexity:0.####}";
                 NestingValueText.Text = metrics.MaxNestingLevel.ToString();
                 OperatorsText.Text = $"Всего операторов N: {metrics.TotalOperators}";
-                CasesText.Text = GetSwitchSummary(CodeTextBox.Text);
 
                 StatusText.Text = _currentFilePath is null
                     ? "Анализ завершён."
@@ -134,7 +130,6 @@ namespace DjilbaParser
             RelativeFormulaText.Text = "CL / число операторов";
             NestingValueText.Text = "—";
             OperatorsText.Text = "";
-            CasesText.Text = "";
         }
 
         private void ShowError(string message)

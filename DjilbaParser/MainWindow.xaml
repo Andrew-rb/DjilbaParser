@@ -83,12 +83,6 @@
                         <Button Grid.Column="2"
                                 Content="Встроенный пример"
                                 Click="SampleButton_Click"/>
-                        <TextBlock Grid.Column="3"
-                                   x:Name="FileNameText"
-                                   VerticalAlignment="Center"
-                                   Margin="8,0,0,0"
-                                   Foreground="#5E6872"
-                                   TextTrimming="CharacterEllipsis"/>
                     </Grid>
 
                     <TextBox x:Name="CodeTextBox"
@@ -130,10 +124,6 @@
                                            FontSize="31"
                                            FontWeight="SemiBold"
                                            Margin="0,3,0,0"/>
-                                <TextBlock Text="Количество условных операторов с учётом case"
-                                           Foreground="#7A838C"
-                                           TextWrapping="Wrap"
-                                           Margin="0,3,0,0"/>
                             </StackPanel>
                         </Border>
 
@@ -168,10 +158,6 @@
                                            FontSize="31"
                                            FontWeight="SemiBold"
                                            Margin="0,3,0,0"/>
-                                <TextBlock Text="Уровни считаются от 0, с учётом вложенных циклов и ветвлений"
-                                           Foreground="#7A838C"
-                                           TextWrapping="Wrap"
-                                           Margin="0,3,0,0"/>
                             </StackPanel>
                         </Border>
 
@@ -182,13 +168,6 @@
                         <TextBlock x:Name="OperatorsText"
                                    Foreground="#3E4852"
                                    Margin="0,0,0,3"/>
-                        <TextBlock x:Name="CasesText"
-                                   Foreground="#3E4852"
-                                   Margin="0,0,0,3"/>
-                        <TextBlock Text="default не увеличивает CL; для n case вклад в CL равен n"
-                                   Foreground="#5E6872"
-                                   TextWrapping="Wrap"
-                                   Margin="0,5,0,0"/>
 
                         <Separator Margin="0,18,0,14"/>
 
@@ -204,7 +183,7 @@
                                    Foreground="#3E4852"
                                    TextWrapping="Wrap"
                                    Margin="0,0,0,4"/>
-                        <TextBlock Text="CLI = максимальный уровень вложенности условных конструкций; switch с n case даёт n−1 вложенных уровней"
+                        <TextBlock Text="CLI = максимальный уровень вложенности условных конструкций"
                                    Foreground="#3E4852"
                                    TextWrapping="Wrap"/>
                     </StackPanel>

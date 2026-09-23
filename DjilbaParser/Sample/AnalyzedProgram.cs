@@ -21,37 +21,40 @@
                     negative++;
                 }
             }
+
             foreach (int value in values)
             {
-                if (value == 0)
+                for (int i = 0; i < values.Count; i++)
                 {
-                    continue;
-                }
-                switch (Math.Abs(value) % 4)
-                {
-                    case 0:
-                        total += 4;
-                        break;
-                    case 1:
-                        total += 1;
-                        if (value > 10)
+                    if (value == 0)
+                    {
+                        switch (Math.Abs(value) % 4)
                         {
-                            total += 2;
+                            case 0:
+                                total += 4;
+                                break;
+                            case 1:
+                                total += 1;
+                                if (value > 10)
+                                {
+                                    total += 2;
+                                }
+                                break;
+                            case 2:
+                                total += 2;
+                                for (int k = 0; k < 2; k++)
+                                {
+                                    total += k;
+                                }
+                                break;
+                            case 3:
+                                total += 3;
+                                break;
+                            default:
+                                total--;
+                                break;
                         }
-                        break;
-                    case 2:
-                        total += 2;
-                        for (int j = 0; j < 2; j++)
-                        {
-                            total += j;
-                        }
-                        break;
-                    case 3:
-                        total += 3;
-                        break;
-                    default:
-                        total--;
-                        break;
+                    }
                 }
             }
             while (index < values.Count)

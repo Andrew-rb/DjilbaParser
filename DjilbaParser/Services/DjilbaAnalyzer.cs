@@ -55,6 +55,11 @@ namespace DjilbaParser.Services
                 switch (statement)
                 {
                     case IfStatementSyntax:
+                    case ForStatementSyntax:
+                    case ForEachStatementSyntax:
+                    case ForEachVariableStatementSyntax:
+                    case WhileStatementSyntax:
+                    case DoStatementSyntax:
                         conditionalOperators++;
                         maxNesting = Math.Max(maxNesting, depth);
                         break;
@@ -62,11 +67,6 @@ namespace DjilbaParser.Services
                     case SwitchStatementSyntax switchStatement:
                         int caseCount = CountCaseLabels(switchStatement);
 
-                        // Правило задания:
-                        // n обычных case -> CL += n.
-                        // default в CL не входит.
-                        // Максимальный уровень, создаваемый switch, равен n - 1
-                        // относительно уровня самого switch.
                         conditionalOperators += caseCount;
 
                         if (caseCount > 0)
@@ -91,8 +91,6 @@ namespace DjilbaParser.Services
 
         private static bool IsCountedOperator(StatementSyntax statement)
         {
-            // { } — структурные блоки, а объявление локальной функции — декларация,
-            // а не исполняемый оператор в используемом здесь классическом подсчёте.
             return statement is not BlockSyntax
                 and not EmptyStatementSyntax
                 and not LabeledStatementSyntax
@@ -160,7 +158,6 @@ namespace DjilbaParser.Services
 
             if (containsDefault)
             {
-                // default — последняя ветка цепочки, после всех case.
                 branchIndex = Math.Max(0, caseCount - 1);
             }
             else
@@ -168,8 +165,6 @@ namespace DjilbaParser.Services
                 branchIndex = ordinaryCasesBeforeSection;
             }
 
-            // Первая ветка эквивалентна if на уровне switch;
-            // последующие ветки становятся вложенными else-if.
             return branchIndex + 1;
         }
     }
