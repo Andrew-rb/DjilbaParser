@@ -63,7 +63,6 @@ namespace DjilbaParser
             {
                 CodeTextBox.Text = File.ReadAllText(samplePath);
                 _currentFilePath = samplePath;
-                FileNameText.Text = "Встроенный пример: ";
                 AnalyzeCurrentCode();
                 return;
             }
